@@ -1,0 +1,3 @@
+****modals folder to store the schema of the objects that have to be stored in mongo.
+****routes to make the end points if the endpoints are in more pages then there will be number of files in routes folder.
+****

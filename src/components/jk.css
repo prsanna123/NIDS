@@ -1,0 +1,43 @@
+.container-fluid {
+    padding-left: 40%;
+    padding-right: 40%;
+    padding-top: 5%;
+}
+
+.card {
+    background-color: black;
+    border-color: rgb(22, 110, 145);
+    border-width: 10px;
+    width: 50%;
+    /* text-emphasis-color: white; */
+}
+
+.card-title {
+    color: peachpuff;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 30px;
+}
+
+
+/* .card-body {
+    color: aliceblue;
+} */
+
+.btn {
+    background-color: rgba(38, 225, 218, 0.955);
+}
+
+.card1 {
+    border-width: 10px;
+    background-color: rgba(11, 170, 195, 0.811);
+    border-color: rgb(23, 121, 196);
+    align-items: center;
+    border-style: double;
+}
+
+.card-title1 {
+    color: rgb(20, 20, 19);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 40px;
+    text-align: center;
+}
