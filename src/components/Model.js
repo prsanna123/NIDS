@@ -48,26 +48,32 @@ export const Model = (props) => {
     }
   return (
     <div>
-        <div className="d-flex justify-content-center" style={{paddingTop:"3rem",paddingBottom:"3rem"}}>
+        <div className="d-flex justify-content-center" style={{paddingTop:"3rem",paddingBottom:"5rem"}}>
             <h2>Choose File for Prediction</h2>
         </div>
-        <div style={{paddingLeft:"25rem"}}>
-        <div className="d-flex justify-content-center" style={{borderStyle: 'dashed',borderRadius: 0,width:"50%"}}>
+        <div className="d-flex justify-content-center form-control shadow-none" style={{borderStyle: 'dashed',borderRadius: 0,width:"100%"}}>
             <input  id="file-input" type="file" className="btn btn-primary" accept=".txt" name="FileName" onChange={updateFileName}/> 
         </div>
-        </div>
+        <br></br>
+        <br></br>
+        <button className="btn btn-dark d-grid gap-2 col-3 mx-auto" onClick={predictKNN} disabled={filename.FileName===""?true:false}>Predict</button>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
         <div className="d-flex justify-content-center" id="loading">
-            {loading===true?<img src={require('D:/MERNdemostration/inotebook2/src/components/icons8-spinner.gif')} alt='loading...'/>:<img src="" alt=""/>}
-        </div><br></br>
-        <div className="text-center"><button className="btn btn-primary  text-center" role="button" onClick={predictKNN} disabled={filename.FileName===""?true:false}>Predict by KNN</button></div>
-        
-        {/* <button className="btn btn-primary" onClick={predictKNN} disabled={filename.FileName===""?true:false}>Predict by KNN</button> */}
-            <p id="para"></p>
-            <h5>Truth value:</h5>
-            <h5 id="truth"></h5>
-            <h5>Prediction:</h5>
-            <h5 id="Prediction"></h5>
-
+            {loading===true?<img src={require("./loader.gif")} alt='loading...'/>:<img src="" alt=""/>}
+        </div>
+        <br></br>
+        <br></br>
+        <br></br>
+        <p id="para"></p>
+        <h5>Accuracy rate:</h5>
+        <h5 id="truth"></h5>
+        <br></br>
+        <h5>Predicted Attack Class:</h5>
+        <h5 id="Prediction"></h5>
+        <br></br>
 
     </div>
   )

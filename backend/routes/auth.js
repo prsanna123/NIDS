@@ -217,6 +217,7 @@ router.get('/predictKNN',(req,res)=>{
   const childPython = spawn('python',[PyFilePath,InpFilePath]);
 
   childPython.stdout.on('data', (data)=>{
+      console.log(data)
       res.send({"result":`${data}`}) 
   });
 
