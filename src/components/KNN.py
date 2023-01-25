@@ -64,13 +64,13 @@ for col in default_col_names:
 
 test_list = [d[col] for col in col_names]
 
-with open('D:/NIDS/ML_Projects/Network-Intrusion-Detection-Using-Machine-Learning/datasets/nids_input.csv','w',newline='') as file:
+with open('datasets/nids_input.csv','w',newline='') as file:
     writer = csv.writer(file)
     writer.writerow(col_names)
     writer.writerow(test_list)
 
-data = pd.read_csv('D:/NIDS/ML_Projects/Network-Intrusion-Detection-Using-Machine-Learning/datasets/KDDTrainandtest.csv',header=None, names=col_names)
-testdata = pd.read_csv('D:/NIDS/ML_Projects/Network-Intrusion-Detection-Using-Machine-Learning/datasets/nids_input.csv')
+data = pd.read_csv('datasets/KDDTrainandtest.csv',header=None, names=col_names)
+testdata = pd.read_csv('datasets/nids_input.csv')
 
 data = data.append(testdata.iloc[0],ignore_index=True)
 
@@ -125,7 +125,7 @@ le2 = preprocessing.LabelEncoder()
 enc_label = multi_label.apply(le2.fit_transform)
 multi_data['intrusion'] = enc_label
 
-np.save("D:/NIDS/ML_Projects/Network-Intrusion-Detection-Using-Machine-Learning/le2_classes.npy",le2.classes_,allow_pickle=True)
+np.save("datasets/le2_classes.npy",le2.classes_,allow_pickle=True)
 
 # one-hot-encoding attack label
 multi_data = pd.get_dummies(multi_data,columns=['label'],prefix="",prefix_sep="") 
@@ -152,7 +152,7 @@ numeric_multi = numeric_multi.join(categorical)
 multi_data = numeric_multi.join(multi_data[['intrusion','Dos','Probe','R2L','U2R','normal','label']])
 
 # saving final dataset to disk
-multi_data.to_csv('D:/NIDS/ML_Projects/Network-Intrusion-Detection-Using-Machine-Learning/datasets/multi_data.csv')
+multi_data.to_csv('datasets/multi_data.csv')
 
 # final dataset for multi-class classification
 
@@ -162,12 +162,12 @@ from sklearn.metrics import classification_report # for generating a classificat
 import pickle # saving and loading trained model
 from os import path
 
-bin_data = pd.read_csv('D:/NIDS/ML_Projects/Network-Intrusion-Detection-Using-Machine-Learning/datasets/bin_data.csv')
+bin_data = pd.read_csv('datasets/bin_data.csv')
 bin_data.drop(bin_data.columns[0],axis=1,inplace=True)
-multi_data = pd.read_csv('D:/NIDS/ML_Projects/Network-Intrusion-Detection-Using-Machine-Learning/datasets/multi_data.csv')
+multi_data = pd.read_csv('datasets/multi_data.csv')
 multi_data.drop(multi_data.columns[0],axis=1,inplace=True)
-le1_classes_ = np.load('D:/NIDS/ML_Projects/Network-Intrusion-Detection-Using-Machine-Learning/labels/le1_classes.npy',allow_pickle=True)
-le2_classes_ = np.load('D:/NIDS/ML_Projects/Network-Intrusion-Detection-Using-Machine-Learning/le2_classes.npy',allow_pickle=True)
+le1_classes_ = np.load('datasets/le1_classes.npy',allow_pickle=True)
+le2_classes_ = np.load('datasets/le2_classes.npy',allow_pickle=True)
 
 X = multi_data.iloc[:,0:93].to_numpy() # dataset excluding target attribute (encoded, one-hot-encoded,original)
 Y = multi_data['intrusion'] # target attribute
@@ -181,7 +181,7 @@ from sklearn.neighbors import KNeighborsClassifier
 knn=KNeighborsClassifier(n_neighbors=5)
 knn.fit(X_train,y_train) # training model on training dataset
 
-pkl_filename = "D:/NIDS/ML_Projects/Network-Intrusion-Detection-Using-Machine-Learning/models/knn_multi.pkl"
+pkl_filename = "datasets/knn_multi.pkl"
 if(not path.isfile(pkl_filename)):
 #   saving trained model to disk
     with open(pkl_filename, 'wb') as file:
